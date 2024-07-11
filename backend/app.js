@@ -13,12 +13,13 @@ const app = express();
 config({ path: "./config/config.env" });
 
 
-const corsOptions = {
-  origin: 'https://mern-goo9.onrender.com',
-  optionsSuccessStatus: 200
-};
-
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: [process.env.FRONTEND_URL_ONE, process.env.FRONTEND_URL_TWO],
+    method: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true,
+  })
+);
 
 app.use(cookieParser());
 app.use(express.json());
